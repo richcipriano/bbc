@@ -3,6 +3,8 @@ import json
 import os
 from discord.ext import commands
 
+client = commands.Bot
+
 class Example(commands.Cog):
 
     def __init__(self, client):
@@ -10,7 +12,7 @@ class Example(commands.Cog):
 
 
     #ONLINE
-    @commands.Cog.listener()
+    @commands.Cog.listener
     async def on_ready(self):
         print('Bot Currency is ready')
 
@@ -57,7 +59,6 @@ class Example(commands.Cog):
         if lvl_start < lvl_end:
             await client.send.message(channel, '{} lucrou ${}'.format(user.mention, lvl_end))
         ...
-
 
 def setup(client):
     client.add_cog(Example(client))
