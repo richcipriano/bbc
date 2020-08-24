@@ -17,7 +17,7 @@ class Example(commands.Cog):
         ...
 
     @client.event
-    async def on_member_join(member):
+    async def on_message(self, member):
         with open('users.json', 'r') as f:
             users = json.load(f)
 
@@ -29,27 +29,27 @@ class Example(commands.Cog):
         ...
 
     @client.event
-    async def on_member_join(member):
+    async def on_member_join(self, member):
         with open('users.json', 'r') as f:
             users = json.load(f)
 
         await update_data(users, message.author)
         await add_experience(users, message.author, 5)
-        await level_up(users message.author, message.channel)
+        await level_up(users, message.author, message.channel)
 
         with open('user.json', 'w') as f:
             json.dump(users, f)
 
-    async def update_data(users, user):
+    async def update_data(self, users, user):
         if not user.id in users:
             users[user.id] = {}
             users[user.id]['experience'] = 0
             users[user.id]['level'] = 1
 
-    async def add_experience(users, users, exp):
+    async def add_experience(self, users, user, exp):
         users[user.id]['experience'] = experience
 
-    async def level_up(users, users, channel)
+    async def level_up(self, users, user, channel):
         experience = users[user.id]['experience']
         lvl_start = users[user.id]['level']
         lvl_end = int(experience ** (1/4))
